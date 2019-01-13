@@ -17,7 +17,7 @@
     var turn = "";
 
     function initSocket() {
-        socket = new WebSocket("ws://localhost:8000/");
+        socket = new WebSocket("ws://bwbot.org:8000/");
         socket.onopen = function(evt) {
             socketConnectionFlag = true;
             if (adminFlag) {
