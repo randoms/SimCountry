@@ -1,0 +1,304 @@
+.gauss-filter {
+  mask: url(#gaussfilter);
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: "Open Sans 300", "Open Sans", Helvetica Neue, Helvetica, Arial, Verdana, STHeiti, 'Microsoft Yahei', sans-serif;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  font-family: "Open Sans 300", "Open Sans", Helvetica Neue, Helvetica, Arial, Verdana, STHeiti, 'Microsoft Yahei', sans-serif;
+}
+.hide {
+  display: none !important;
+}
+.start-page {
+  width: 100%;
+  height: 100%;
+  background: #9ff59f;
+}
+.start-page .info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  padding: 0 10px;
+}
+.start-page .info .status {
+  float: right;
+}
+.start-page .info .status .status-text {
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 20px;
+}
+.start-page .info .status .status-icon {
+  display: inline-block;
+  border-radius: 20px;
+  width: 15px;
+  height: 15px;
+  vertical-align: top;
+  line-height: 20px;
+  margin-top: 2px;
+}
+.start-page .info .status .status-icon.ok {
+  background: green;
+}
+.start-page .info .status .status-icon.error {
+  background: red;
+}
+.start-page .info .room-id-text {
+  font-size: 15px;
+}
+.start-page .info .room-id {
+  font-size: 15px;
+}
+.start-page .room-name {
+  position: relative;
+  top: 40px;
+  text-align: left;
+  background: #9ff59f;
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+}
+.start-page .room-name .name-text {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: inline-block;
+  color: #333;
+}
+.start-page .room-name .country-name {
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 24px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+.start-page .room-name .btn-create-country {
+  display: inline-block;
+  width: 100%;
+  background: #3360fe;
+  padding: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  height: 40px;
+}
+.start-page .room-controller {
+  position: relative;
+  top: 40px;
+  padding: 0 10px;
+}
+.start-page .room-controller .add-robot {
+  display: inline-block;
+  width: 100%;
+  background: #3360fe;
+  padding: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  height: 40px;
+}
+.start-page .game-btns {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  padding: 0 10px;
+}
+.start-page .game-btns .btn-start {
+  display: inline-block;
+  width: 100%;
+  background: #3360fe;
+  padding: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  height: 40px;
+}
+.start-page .game-btns .btn-prepare {
+  display: inline-block;
+  width: 100%;
+  background: #3360fe;
+  padding: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  height: 40px;
+}
+.start-page .player-list {
+  top: 60px;
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.start-page .player-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.start-page .player-list ul li {
+  display: block;
+  height: 40px;
+  background: #000;
+  line-height: 40px;
+  padding: 0 10px;
+  color: white;
+}
+.start-page .player-list ul li.my-country {
+  background: #fe3390;
+}
+.game-scene {
+  width: 100%;
+  height: 100%;
+  background: #9ff59f;
+}
+.game-scene .info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  padding: 0 10px;
+}
+.game-scene .info .status {
+  float: right;
+}
+.game-scene .info .status .status-text {
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: 20px;
+}
+.game-scene .info .status .status-icon {
+  display: inline-block;
+  border-radius: 20px;
+  width: 15px;
+  height: 15px;
+  vertical-align: top;
+  line-height: 20px;
+  margin-top: 2px;
+}
+.game-scene .info .status .status-icon.ok {
+  background: green;
+}
+.game-scene .info .status .status-icon.error {
+  background: red;
+}
+.game-scene .info .room-id-text {
+  font-size: 15px;
+}
+.game-scene .info .room-id {
+  font-size: 15px;
+}
+.game-scene .country-list {
+  top: 60px;
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.game-scene .country-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.game-scene .country-list ul li {
+  display: block;
+  height: 40px;
+  background: #000;
+  line-height: 40px;
+  padding: 0 10px;
+  color: white;
+}
+.game-scene .country-list ul li.my-country {
+  background: #fe3390;
+}
+.game-scene .country-list ul li.on-turn {
+  border: 10px solid green;
+}
+.game-scene .world-info {
+  width: 100%;
+  height: 300px;
+  padding: 0 10px;
+  position: fixed;
+  bottom: 0;
+  overflow-y: scroll;
+  background: black;
+  color: white;
+  font-size: 14px;
+}
+.game-scene .world-info .status-info {
+  color: white;
+  display: block;
+}
+.game-scene .world-info .status-warn {
+  color: yellow;
+  display: block;
+}
+.game-scene .world-info .status-error {
+  color: red;
+  display: block;
+}
+.game-scene .plan-editor {
+  position: absolute;
+  bottom: 310px;
+  padding: 0 10px;
+}
+.game-scene .plan-editor span {
+  font-size: 24px;
+  color: #333;
+  width: 120px;
+  display: inline-block;
+}
+.game-scene .plan-editor input {
+  height: 40px;
+  width: 50%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 24px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+.game-scene .plan-editor .submit-plan {
+  display: inline-block;
+  width: 100%;
+  background: #3360fe;
+  padding: 10px 0;
+  text-align: center;
+  box-sizing: border-box;
+  color: white;
+  text-decoration: none;
+  height: 40px;
+}

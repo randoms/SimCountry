@@ -51,3 +51,11 @@ class Person:
             self.health += (self.money - 10) / 2
         if self.health < 0:
             self.health = 0
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "money": self.money,
+            "health": self.health
+        }

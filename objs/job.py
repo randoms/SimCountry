@@ -11,3 +11,10 @@ class Job:
         self.id = job_id
         job_id += 1
         self.worker = None
+    
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "money": self.money
+        }

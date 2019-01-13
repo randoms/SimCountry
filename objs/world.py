@@ -8,7 +8,7 @@ world_id = 0
 
 class World:
 
-    def __init__(self, name=""):
+    def __init__(self, name="", room=None):
         global world_id
         self.id = world_id
         world_id += 1
@@ -17,11 +17,14 @@ class World:
         self.jobs = []
         self.time = 0
         self.name = name
+        self.room = room
+        self.current_turn = 0
 
     def play(self):
         self.jobs = []
         # 城市发布任务
         for country in self.countrys:
+            self.current_turn = country.id
             self.jobs += country.publish_jobs()
 
         # 随机工人顺序
@@ -37,17 +40,37 @@ class World:
             job = person.choose_job(self.jobs)
             if job is None:
                 print("{person.name} 没有获取到任务".format(person=person))
+                if self.room is not None:
+                    self.room.broadcast("system", {
+                        "info": "{person.name} 没有获取到任务".format(person=person)
+                    })
                 choosed_country = person.choose_country()
                 if choosed_country == person.country:
                     print("{person.name} 决定还是呆在 {country.name}".format(
                         person=person, country=choosed_country))
+                    if self.room is not None:
+                        self.room.broadcast("system", {
+                            "info": "{person.name} 决定还是呆在 {country.name}".format(
+                                person=person, country=choosed_country)
+                        })
                     continue
-                print("想要移动到{country.name}, 面积{country.area},人口{num}".format(country=choosed_country,num=len(choosed_country.citizens)))
+                print("想要移动到{country.name}, 面积{country.area},人口{num}".format(
+                    country=choosed_country, num=len(choosed_country.citizens)))
+                if self.room is not None:
+                    self.room.broadcast("system", {
+                        "info": "想要移动到{country.name}, 面积{country.area},人口{num}".format(
+                            country=choosed_country, num=len(choosed_country.citizens))
+                    })
                 if choosed_country.area > len(choosed_country.citizens):
                     # 本城市尚有空间
                     choosed_country.add_person(person)
                     print("{person.name} 移动到了城市 {country.name}".format(
                         person=person, country=choosed_country))
+                    if self.room is not None:
+                        self.room.broadcast("system", {
+                            "info": "{person.name} 移动到了城市 {country.name}".format(
+                                person=person, country=choosed_country)
+                        })
                 continue
             # 分配此任务
             if job.country.area <= len(job.country.citizens):
@@ -56,7 +79,11 @@ class World:
             print("**")
             print("{person.name} 获取了 {country.name} 发布的任务 工资{job.money} 税收 ${country.tex}".format(
                 person=person, country=job.country, job=job))
-
+            if self.room is not None:
+                self.room.broadcast("system", {
+                    "info": "{person.name} 获取了 {country.name} 发布的任务 工资{job.money} 税收 ${country.tex}".format(
+                        person=person, country=job.country, job=job)
+                })
             # 删除任务
             self.jobs.remove(job)
 
@@ -79,6 +106,10 @@ class World:
             if person.health == 0:
                 self.remove_person(person)
                 print("{person.name} 穷死了 ...".format(person=person))
+                if self.room is not None:
+                    self.room.broadcast("system", {
+                        "warn": "{person.name} 穷死了 ...".format(person=person)
+                    })
 
         self.time += 1
 
@@ -88,11 +119,18 @@ class World:
         for country in self.countrys:
             if country.area <= 0:
                 print("城镇 {country.name} 面积为零, 城镇死亡".format(country=country))
+                if self.room is not None:
+                    self.room.broadcast("system", {
+                        "warn": "城镇 {country.name} 面积为零, 城镇死亡".format(country=country)
+                    })
                 self.remove_country(country)
         if len(self.countrys) == 0:
             print("所有国家都已灭亡，{name} 已经毁灭".format(name=self.name))
+            if self.room is not None:
+                self.room.broadcast("system", {
+                    "warn": "所有国家都已灭亡，{name} 已经毁灭".format(name=self.name)
+                })
             exit(0)
-                
 
     def report(self):
         print("时间: {time}".format(time=self.time))
@@ -116,9 +154,9 @@ class World:
         print("#######")
         print("世界总金钱: ${total_money}".format(total_money=total_money))
 
-    def create_country(self, name, area=10, money=10, tex=1, manual=False):
+    def create_country(self, name, area=10, money=10, tex=1, manual=False, client=None):
         new_country = Country(self, name, area=area,
-                              money=10, tex=1, manual=manual)
+                              money=10, tex=1, manual=manual, client=client)
         self.countrys.append(new_country)
         return new_country
 
@@ -137,3 +175,16 @@ class World:
         for person in country.citizens:
             person.country = None
         self.countrys.remove(country)
+
+    def to_json(self):
+        total_money = 0
+        for person in self.persons:
+            total_money += person.money
+        for country in self.countrys:
+            total_money += country.money
+        return {
+            "money": total_money,
+            "population": len(self.persons),
+            "persons": [person.to_json() for person in self.persons],
+            "countrys": [country.to_json() for country in self.countrys],
+        }

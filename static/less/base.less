@@ -1,0 +1,67 @@
+// colors
+@base-color: #383838;
+@base-color-one: #4e4e4e;
+@base-color-lighter: #545454;
+@base-color-darker: #039BE5;
+@base-color-font-darker: #323a45;
+@base-color-font-normal: #5e6d81;
+@base-color-font-lighter: #969696;
+@base-color-font-white: #ffffff;
+// dims
+@nav-height: 50px;
+@font-size: 16px;
+@font-size-small: 14px;
+@font-size-sm: 16px;
+@font-size-large: 22px;
+@font-size-exsm: 10px;
+@max-content-width: 1250px;
+@icon-margin: 8px;
+// fonts
+@base-font-family: "Open Sans 300",
+"Open Sans",
+Helvetica Neue,
+Helvetica,
+Arial,
+Verdana,
+STHeiti,
+'Microsoft Yahei',
+sans-serif;
+// mixins
+.gauss-filter {
+    mask: url(#gaussfilter);
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-family: @base-font-family;
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+body,
+div,
+span {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    font-family: @base-font-family;
+}
+
+.hide {
+    display: none !important;
+}

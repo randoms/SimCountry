@@ -1,0 +1,34 @@
+.gauss-filter {
+  mask: url(#gaussfilter);
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: "Open Sans 300", "Open Sans", Helvetica Neue, Helvetica, Arial, Verdana, STHeiti, 'Microsoft Yahei', sans-serif;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  font-family: "Open Sans 300", "Open Sans", Helvetica Neue, Helvetica, Arial, Verdana, STHeiti, 'Microsoft Yahei', sans-serif;
+}
+.hide {
+  display: none !important;
+}

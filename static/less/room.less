@@ -1,0 +1,275 @@
+// out: ../css/room.css, sourcemap: false, compressed: true;
+@import 'base.less';
+.start-page {
+    width: 100%;
+    height: 100%;
+    background: #9ff59f;
+    .info {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 100%;
+        padding: 0 10px;
+        .status {
+            float: right;
+            .status-text {
+                font-size: 15px;
+                display: inline-block;
+                vertical-align: bottom;
+                line-height: 20px;
+            }
+            .status-icon {
+                display: inline-block;
+                border-radius: 20px;
+                width: 15px;
+                height: 15px;
+                vertical-align: top;
+                line-height: 20px;
+                margin-top: 2px;
+                &.ok {
+                    background: green;
+                }
+                &.error {
+                    background: red;
+                }
+            }
+        }
+        .room-id-text {
+            font-size: 15px;
+        }
+        .room-id {
+            font-size: 15px;
+        }
+    }
+    .room-name {
+        position: relative;
+        top: 40px;
+        text-align: left;
+        background: #9ff59f;
+        width: 100%;
+        height: 100%;
+        padding: 0 40px;
+        .name-text {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: inline-block;
+            color: #333;
+        }
+        .country-name {
+            height: 40px;
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .btn-create-country {
+            display: inline-block;
+            width: 100%;
+            background: #3360fe;
+            padding: 10px 0;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            text-decoration: none;
+            height: 40px;
+        }
+    }
+    .room-controller {
+        position: relative;
+        top: 40px;
+        padding: 0 10px;
+        .add-robot {
+            display: inline-block;
+            width: 100%;
+            background: #3360fe;
+            padding: 10px 0;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            text-decoration: none;
+            height: 40px;
+        }
+    }
+    .game-btns {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        padding: 0 10px;
+        .btn-start {
+            display: inline-block;
+            width: 100%;
+            background: #3360fe;
+            padding: 10px 0;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            text-decoration: none;
+            height: 40px;
+        }
+        .btn-prepare {
+            display: inline-block;
+            width: 100%;
+            background: #3360fe;
+            padding: 10px 0;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            text-decoration: none;
+            height: 40px;
+        }
+    }
+    .player-list {
+        top: 60px;
+        position: relative;
+        padding: 0 10px;
+        box-sizing: border-box;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                display: block;
+                height: 40px;
+                background: #000;
+                line-height: 40px;
+                padding: 0 10px;
+                color: white;
+                &.my-country {
+                    background: #fe3390;
+                }
+            }
+        }
+    }
+}
+
+.game-scene {
+    width: 100%;
+    height: 100%;
+    background: #9ff59f;
+    .info {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 100%;
+        padding: 0 10px;
+        .status {
+            float: right;
+            .status-text {
+                font-size: 15px;
+                display: inline-block;
+                vertical-align: bottom;
+                line-height: 20px;
+            }
+            .status-icon {
+                display: inline-block;
+                border-radius: 20px;
+                width: 15px;
+                height: 15px;
+                vertical-align: top;
+                line-height: 20px;
+                margin-top: 2px;
+                &.ok {
+                    background: green;
+                }
+                &.error {
+                    background: red;
+                }
+            }
+        }
+        .room-id-text {
+            font-size: 15px;
+        }
+        .room-id {
+            font-size: 15px;
+        }
+    }
+    .country-list {
+        top: 60px;
+        position: relative;
+        padding: 0 10px;
+        box-sizing: border-box;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                display: block;
+                height: 40px;
+                background: #000;
+                line-height: 40px;
+                padding: 0 10px;
+                color: white;
+                &.my-country {
+                    background: #fe3390;
+                }
+                &.on-turn {
+                    border: 10px solid green;
+                }
+            }
+        }
+    }
+    .world-info {
+        width: 100%;
+        height: 300px;
+        padding: 0 10px;
+        position: fixed;
+        bottom: 0;
+        overflow-y: scroll;
+        background: black;
+        color: white;
+        font-size: 14px;
+        .status-info {
+            color: white;
+            display: block;
+        }
+        .status-warn {
+            color: yellow;
+            display: block;
+        }
+        .status-error {
+            color: red;
+            display: block;
+        }
+    }
+    .plan-editor {
+        position: absolute;
+        bottom: 310px;
+        padding: 0 10px;
+        span {
+            font-size: 24px;
+            color: #333;
+            font-size: 24px;
+            color: #333;
+            width: 120px;
+            display: inline-block;
+        }
+        input {
+            height: 40px;
+            width: 50%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+        }
+        .submit-plan {
+            display: inline-block;
+            width: 100%;
+            background: #3360fe;
+            padding: 10px 0;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            text-decoration: none;
+            height: 40px;
+        }
+    }
+}

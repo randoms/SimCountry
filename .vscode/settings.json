@@ -1,3 +1,11 @@
 {
-    "python.pythonPath": "venv\\Scripts\\python.exe"
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "editor.formatOnSave": false,
+    "javascript.format.enable": true,
+    "prettier.eslintIntegration": true,
+    "jshint.enable": false,
+    "prettier.tabWidth": 4,
+    "jslint.enable": false,
+    "editor.formatOnPaste": false,
+
 }
